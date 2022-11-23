@@ -1,8 +1,6 @@
 import { OrbitControls } from "@react-three/drei";
 import { useControls } from "leva";
-import WaterBall from "./waterBall/WaterBall";
-import Waterblob from "./Waterblob";
-import CustomLayer from "./Waterblob";
+import Waterblob from "./Components/Blob/Waterblob";
 import { extend } from "@react-three/fiber";
 
 export default function Experience() {
@@ -15,6 +13,10 @@ export default function Experience() {
       <directionalLight position={[1, 2, 3]} />
 
       <Waterblob />
+
+      <mesh>
+        <boxGeometry />
+      </mesh>
     </>
   );
 }
