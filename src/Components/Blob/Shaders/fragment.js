@@ -3,8 +3,8 @@ export default /* glsl */
     uniform vec3 u_color;
     uniform float u_alpha;
 
-    // Varyings must be prefixed by "v_"
     varying vec3 v_Position;
+    varying vec2 v_Uv;
 
     vec4 main() {
         // Local variables must be prefixed by "f_"

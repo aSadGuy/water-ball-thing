@@ -3,6 +3,7 @@ import { useControls } from "leva";
 import Waterblob from "./Components/Blob/Waterblob";
 import { extend } from "@react-three/fiber";
 
+
 export default function Experience() {
   return (
     <>
@@ -15,7 +16,7 @@ export default function Experience() {
       <Waterblob />
 
       <mesh>
-        <boxGeometry />
+        {/* <boxGeometry /> */}
       </mesh>
     </>
   );
