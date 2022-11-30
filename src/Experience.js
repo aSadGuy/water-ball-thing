@@ -3,11 +3,10 @@ import { useControls } from "leva";
 import Waterblob from "./Components/Blob/Waterblob";
 import { extend } from "@react-three/fiber";
 
-
 export default function Experience() {
   return (
     <>
-      <color args={["skyblue"]} attach="background" />
+      <color args={["black"]} attach="background" />
 
       <OrbitControls makeDefault />
 
@@ -16,7 +15,8 @@ export default function Experience() {
       <Waterblob />
 
       <mesh>
-        {/* <boxGeometry /> */}
+        <sphereGeometry args={[0.01, 10, 10]} />
+        <meshStandardMaterial color="red" />
       </mesh>
     </>
   );
