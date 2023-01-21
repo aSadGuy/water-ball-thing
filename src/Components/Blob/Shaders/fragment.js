@@ -10,18 +10,31 @@ export default /* glsl */
     varying vec3 v_position;
     varying vec2 v_uv;
 
+    #define FBM_INIT_AMP 0.5
+    #define FBM_INIT_FREQ 10.0
+    #define FBM_GAIN 0.675
+    #define FBM_LACUNARITY 4.0
+
     #define cnoise lamina_noise_perlin
 
+    float fbm(in vec3 st) {
+        // initial values
+        float value = 0.0;
+        float amplitude = 0.5;
+        float frequency = 0.0;
+    
+        // Loop of octaves
+        for (int i = 0; i < 10; i++) {
+            value += amplitude * cnoise(st);
+            st *= 2.0;
+            amplitude *= 0.5;
+        }
+        return value;
+    }
+
     vec4 main() {
-        // Local variables must be prefixed by "f_"
+        vec4 f_color = vec4( 1.,1., 1.0, 1.0); 
 
-        // lamina_noise_perlin()
-
-
-
-        float f_strength = cnoise(v_position * u_noiseFreq + vec3((u_time * u_fragSpeed) * 0.5));
-
-        vec4 f_color = vec4(v_position + f_strength *  0.2 , u_alpha + f_strength + sin(u_time * u_alphaSpeed));
         return f_color; 
     }
 `;
