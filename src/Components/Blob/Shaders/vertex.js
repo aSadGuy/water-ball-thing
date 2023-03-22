@@ -5,7 +5,9 @@ export default /* glsl */
     uniform float u_amp;
 
     varying vec3 v_position;
+    varying vec3 v_normal;
     varying vec2 v_uv;
+    varying float v_displacement;
 
     #define cnoise lamina_noise_perlin
 
@@ -66,22 +68,38 @@ export default /* glsl */
         return value;
     }
 
+    float smoothMod(float axis, float amp, float rad){
+        float top = cos(PI * (axis / amp)) * sin(PI * (axis / amp));
+        float bottom = pow(sin(PI * (axis / amp)), 2.0) + pow(rad, 2.0);
+        float at = atan(top / bottom);
+        return amp * (1.0 / 2.0) - (1.0 / PI) * at;
+    }
+
+    float fit(float unscaled, float originalMin, float originalMax, float minAllowed, float maxAllowed){
+        return (maxAllowed - minAllowed) * (unscaled - originalMin) / (originalMax - originalMin) + minAllowed;
+    }
+
+    float wave(vec3 position) {
+        return fit(smoothMod(position.y * 6.0, 1.0, 1.5), 0.35, 0.6, 0.0, 1.0);
+    }
+
     void main() {
-        vec4 f_modelPosition = modelMatrix * vec4(position, 1.0);
-
-        float strength = cnoise(v_position * 2.0 + vec3((u_time * 0.1)));
-        strength += fbm1(vec3(strength));
-        // strength += fbm2(vec3(strength));
-        // strength += fbm3(vec3(strength));
-        strength += fbm4(vec3(-strength)); 
-
-        vec3 pos = position;
+        vec3 coords = normal;
+        coords.y += u_time * 0.3;
+        vec3 noisePattern = vec3(cnoise(coords));
+        float pattern = wave(noisePattern);
         
-        pos += vec3(strength);
-
         v_position = position; 
         v_uv = uv;
+        v_normal = normal;
+        v_displacement = pattern;
 
-        return position;
+        float displacement = v_displacement / 3.0;
+        
+        float strength = cnoise(v_position * 1.0 + vec3((u_time * 0.8)));
+
+        vec3 newPosition = position + normal * v_displacement * 0.03;
+
+        return newPosition;
     }
 `;

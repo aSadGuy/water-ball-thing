@@ -6,7 +6,7 @@ import { extend } from "@react-three/fiber";
 export default function Experience() {
   return (
     <>
-      <color args={["white"]} attach="background" />
+      <color args={["#777"]} attach="background" />
 
       <OrbitControls makeDefault />
 

@@ -8,7 +8,9 @@ export default /* glsl */
     uniform float u_alphaSpeed;
 
     varying vec3 v_position;
+    varying vec3 v_normal;
     varying vec2 v_uv;
+    varying float v_displacement;
 
     #define FBM_INIT_AMP 0.5
     #define FBM_INIT_FREQ 10.0
@@ -33,7 +35,11 @@ export default /* glsl */
     }
 
     vec4 main() {
-        vec4 f_color = vec4( 1.,1., 1.0, 1.0); 
+ 
+
+        // vec4 f_color = vec4(vec3(v_displacement), 1.0); 
+        vec4 f_color = vec4(vec3(1.0), 1.0); 
+
 
         return f_color; 
     }

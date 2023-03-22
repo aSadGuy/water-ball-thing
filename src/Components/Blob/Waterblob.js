@@ -118,19 +118,26 @@ function Waterblob() {
     // sphere.current.rotation.y += delta;
     // sphere.current.rotation.z += delta;
 
-    // console.log(sphere.current.rotation.y) 
+    // console.log(sphere.current.rotation.y)
   });
 
   return (
     <mesh>
-      <sphereGeometry ref={sphere} args={[0.5, 50, 50]} />
+      <icosahedronGeometry ref={sphere} args={[0.5, 100]} />
       <LayerMaterial
         lighting="physical"
-        transmission={1}
+        transmission={1.0}
         roughness={0.1}
         // wireframe
       >
         <customLayer ref={shader} />
+        <Fresnel
+          color={"white"}
+          alpha={1.0}
+          power={-0.1}
+          intensity={0.2}
+          bias={0.1}
+        />
         {/* <Displace 
         strength={0.1} 
         scale={2}
