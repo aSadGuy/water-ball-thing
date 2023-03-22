@@ -85,7 +85,7 @@ export default /* glsl */
 
     void main() {
         vec3 coords = normal;
-        coords.y += u_time * 0.3;
+        coords.y += u_time * 0.25;
         vec3 noisePattern = vec3(cnoise(coords));
         float pattern = wave(noisePattern);
         

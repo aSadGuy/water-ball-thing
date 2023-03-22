@@ -123,7 +123,7 @@ function Waterblob() {
 
   return (
     <mesh>
-      <icosahedronGeometry ref={sphere} args={[0.5, 100]} />
+      <sphereGeometry ref={sphere} args={[0.5, 100, 100]} />
       <LayerMaterial
         lighting="physical"
         transmission={1.0}
