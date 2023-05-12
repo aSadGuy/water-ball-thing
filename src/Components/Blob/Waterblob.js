@@ -1,4 +1,3 @@
-import { Sphere } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
 import { LayerMaterial, Displace, Fresnel } from "lamina";
 import { Abstract } from "lamina/vanilla";
@@ -27,7 +26,6 @@ class CustomLayer extends Abstract {
   static u_fragSpeed = 0;
   static u_alphaSpeed = 0;
 
-  // Varyings
   static fragmentShader = fragment;
   static vertexShader = vertex;
 
@@ -133,16 +131,12 @@ function Waterblob() {
         <customLayer ref={shader} />
         <Fresnel
           color={"white"}
-          alpha={1.0}
-          power={-0.1}
+          alpha={0.5}
+          power={0}
           intensity={0.2}
-          bias={0.1}
+          bias={0.3}
         />
-        {/* <Displace 
-        strength={0.1} 
-        scale={2}
-        type="perlin"
-        /> */}
+        {/* <Displace strength={0.1} scale={2} type="perlin" /> */}
       </LayerMaterial>
     </mesh>
   );

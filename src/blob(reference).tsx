@@ -46,9 +46,9 @@ export default function Blob({
         ref={ref}
         args={[0.4, 128, 128]}
       >
-        <LayerMaterial
+        {/* <LayerMaterial
           color={"#ffffff"}
-          lighting={"physical"} //
+          lighting={"physical"}
           transmission={1}
           roughness={0.1}
           thickness={2}
@@ -74,7 +74,7 @@ export default function Blob({
             factor={1.119999999999999}
             mode={"screen"}
           />
-        </LayerMaterial>
+        </LayerMaterial> */}
       </Sphere>
     </group>
   );

@@ -6,7 +6,7 @@ import { extend } from "@react-three/fiber";
 export default function Experience() {
   return (
     <>
-      <color args={["#777"]} attach="background" />
+      <color args={["#eee"]} attach="background" />
 
       <OrbitControls makeDefault />
 
@@ -15,9 +15,9 @@ export default function Experience() {
 
       <Waterblob />
 
-      <mesh>
-        <sphereGeometry args={[0.01, 10, 10]} />
-        <meshStandardMaterial color="red" />
+      <mesh scale={4} rotation-x={Math.PI * -0.5} position-y={-1}>
+        <planeGeometry />
+        <meshStandardMaterial color="white" />
       </mesh>
     </>
   );
